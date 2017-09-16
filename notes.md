@@ -136,3 +136,27 @@ int main()
     std::cout << '\n';
 }
 ```
+
+
+
+### `std::istream_iterator`和`std::ostream_iterator`
+
+`std::istream_iterator`是输入流迭代器, `std::ostream_iterator`是输出流迭代器, 二者配合使用可以较为方便的对容器中的数据进行操作.
+
+```cpp
+#include <iostream>
+#include <iterator>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+  istream_iterator<int> i1(cin); // 通过cin构造输入流迭代器i1, 代表从标准输入设备输入
+  istream_iterator<int> i2;	   // 默认构造, 代表输入流的结束位置
+  vector<int> s1(i1, i2);		   // 通过输入流迭代器从标准输入流中输入数据
+  copy(s1.begin(), s1.end(), ostream_iterator<int>(cout, " "));
+  // 将容器s1中的数据输出到输出流迭代器中, 这里采用cout, 即标准输出设备, 其中" "为间隔符
+  return 0;
+}
+```
+
