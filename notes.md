@@ -136,3 +136,10 @@ int main()
     std::cout << '\n';
 }
 ```
+
+
+
+
+
+## `istream_iterator`和`ostream_iterator`
+
