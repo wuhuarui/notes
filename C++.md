@@ -966,7 +966,7 @@ Complex operator-(const Complex &c1, const Complex &c2){
     return Complex(c1.real-c2.real, c1.imag-c2.imag); 
 }
 
-ostream & operator<<(ostream &out, const Complex &c){
+ostream & operator <<(ostream &out, const Complex &c){
     out << "(" << c.real << ", " << c.imag << ")";
     return out;
 }
@@ -1236,13 +1236,263 @@ template<class T>
 
 
 
-## IO
+## I/O流
 
 istream: operator: >>
 
 ostream: standard output stream(cout): operator: <<
 
 Format tags prototype is **%\[flags\]\[width\]\[.precision\]\[length\]specifier**, which is explained in [fprintf format格式](https://www.tutorialspoint.com/c_standard_library/c_function_fprintf.htm).
+
+
+
+流对象与文件对象建立连接, 通过操作流对象对文件对象产生作用. cout/cin作为标准输入输出设备也被处理为文件.
+
+### 输出流
+
+- ostream: 输出流类的基类
+- ofstream: 文件输出流类
+- ostringstream: 字符串输出流类
+
+预先定义的输出流对象
+
+- cout 标准输出
+- cerr 标准错误输出，没有缓冲，发送给它的内容立即被输出。
+- clog 类似于cerr，但是有缓冲，缓冲区满时被输出。
+
+
+标准输出换向
+
+```cpp
+// 将cout输出到文件b.out中
+ofstream fout("b.out"); // 
+streambuf*  pOld  =cout.rdbuf(fout.rdbuf());  // 将cout定向到fout指定的文件b.out中
+//…
+cout.rdbuf(pOld); // 重置cout
+```
+
+
+
+输出格式的控制: 通过插入运算符`<<`和操纵符(manipulator)实现.
+
+操纵符包括: `setprecision()`, `hex()`, `setw`, `width`等, 其中只 `setw`, `width`仅影响紧随其后的输出项, 其他操纵符保持有效直到发生改变.
+
+```cpp
+// 设置对齐方式
+#include <iomanip> //setiosflags()
+cout << setiosflags(ios_base::left) // 左对齐
+     << setw(6) << "tommy"
+     << resetiosflags(ios_base::left) // 取消左对齐设置
+     << setw(10) << 4 << endl;
+```
+
+
+
+setiosflags的参数是该流的格式标志值，可用按位或（|）运算符进行组合
+
+**setiosflags的参数**
+
+- ios_base::skipws 在输入中跳过空白 。
+- ios_base::left 左对齐值，用填充字符填充右边。
+- ios_base::right 右对齐值，用填充字符填充左边（默认对齐方式）。
+- ios_base::internal 在规定的宽度内，指定前缀符号之后，数值之前，插入指定的填充字符。
+- ios_base::dec 以十进制形式格式化数值（默认进制）。
+- ios_base::oct 以八进制形式格式化数值 。
+- ios_base::hex 以十六进制形式格式化数值。
+- ios_base::showbase 插入前缀符号以表明整数的数制。
+- ios_base::showpoint 对浮点数值显示小数点和尾部的0 。
+- ios_base::uppercase 对于十六进制数值显示大写字母A到F，对于科学格式显示大写字母E 。
+- ios_base::showpos 对于非负数显示正号（“+”）。
+- ios_base::scientific 以科学格式显示浮点数值。
+- ios_base::fixed 以定点格式显示浮点数值（没有指数部分） 。
+- ios_base::unitbuf 在每次插入之后转储并清除缓冲区内容。
+
+
+```cpp
+#include <iostream>
+#include <iomanip>
+ 
+int main()
+{
+    std::cout <<  std::resetiosflags(std::ios_base::dec) 
+              <<  std::setiosflags(  std::ios_base::hex
+                                   | std::ios_base::uppercase
+                                   | std::ios_base::showbase) << 42 << '\n';
+}
+```
+
+
+
+**精度**
+
+- 浮点数输出精度的默认值是6，例如：3466.98。
+- 要改变精度：setprecision操纵符（定义在头文件iomanip中）。
+- 如果不指定fixed或scientific，精度值表示有效数字位数。
+- 如果设置了`ios_base::fixed`或`ios_base::scientific`精度值表示小数点之后的位数。
+
+```cpp
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main(){
+    double value = 45.324;
+    cout << setprecision(4) << value << endl; // 45.32
+  
+    cout << setiosflags(ios_base::fixed);
+    cout << setprecision(2) << value << endl; // 45.32
+    cout << resetiosflags(ios_base::fixed);
+  
+    cout << setiosflags(ios_base::scientific);
+    cout << setprecision(2) << value << endl; // 4.53e+01
+    cout << resetiosflags(ios_base::scientific);
+    return 0;
+}
+```
+
+
+
+**向字符串输出**
+
+将字符串作为输出流的目标, 可以实现将其他数据类型转换为字符串的功能.
+
+`ostringstream`
+
+- 支持ofstream类的除open、close外的所有操作
+- str函数可以返回当前已构造的字符串
+
+```cpp
+//11_6.cpp
+#include <iostream>
+#include <sstream>
+#include <string>
+using namespace std;
+
+//函数模板toString可以将各种支持“<<“插入符的类型的对象转换为字符串。
+template <class T>
+inline string toString(const T &v) {
+    ostringstream os;   //创建字符串输出流
+    os << v;        //将变量v的值写入字符串流
+    return os.str();    //返回输出流生成的字符串
+}
+
+int main() {
+    string str1 = toString(5);
+    cout << str1 << endl;
+    string str2 = toString(1.2);
+    cout << str2 << endl;
+    return 0;
+}
+```
+
+
+
+### 输入流
+
+- istream类最适合用于顺序文本模式输入; cin是其实例. 也是后两个输入流类的基类.
+- ifstream类支持磁盘文件输入.
+- istringstream类从内存的字符串中输入.
+
+提取预算符`>>`是从输入流对象中提取字节最容易的方法.
+
+输入流相关的函数:
+
+- open 把该流与一个特定磁盘文件相关联。
+- get 功能与提取运算符（>>）很相像，主要的不同点是get函数在读入数据时包括空白字符。
+- getline 功能是从输入流中读取多个字符，并且允许指定输入终止字符，读取完成后，从读取的内容中删除终止字符。
+- read 从一个文件读字节到一个指定的内存区域，由长度参数确定要读的字节数。当遇到文件结束或者在文本模式文件中遇到文件结束标记字符时结束读取。 通常与输出流中的write函数对应使用.
+- seekg 用来设置文件输入流中读取数据位置的指针。
+- tellg 返回当前文件读指针的位置。
+- close 关闭与一个文件输入流关联的磁盘文件。
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+int main() {
+    string line;
+    cout << "Type a line terminated by 't' " << endl; 
+    getline(cin, line, 't'); // 为输入流指定一个终止字符't', 读取内容不包括终止字符
+    cout << line << endl;
+    return 0;
+} 
+
+int main() {
+    int values[] = { 3, 7, 0, 5, 4 };
+    ofstream os("integers", ios_base::out | ios_base::binary);
+    // 写入二进制文件
+    // reinterpret_cast强制类型转换, sizeof(values)返回values占的字节
+    os.write(reinterpret_cast<char *>(values), sizeof(values));
+    os.close();
+
+    ifstream is("integers", ios_base::in | ios_base::binary);
+    if (is) {
+        // 跳过3个int字节长度
+        is.seekg(3 * sizeof(int));
+        int v;
+        // 读取二进制文件
+        is.read(reinterpret_cast<char *>(&v), sizeof(int));
+        cout << "The 4th integer in the file 'integers' is " << v << endl;
+    } else {
+        cout << "ERROR: Cannot open file 'integers'." << endl;
+    }
+    return 0;
+}
+// 遍历文件， 找到其中0所在的位置
+int main() {
+    ifstream file("integers", ios_base::in | ios_base::binary);
+    if (file) {
+        while (file) {//读到文件尾file为0
+            streampos here = file.tellg(); // 获取当前所在的位置
+            int v;
+            file.read(reinterpret_cast<char *>(&v), sizeof(int));
+            if (file && v == 0) 
+            cout << "Position " << here << " is 0" << endl;
+        }
+    } else {
+        cout << "ERROR: Cannot open file 'integers'." << endl;
+    }
+    file.close();
+    return 0;
+}
+```
+
+
+
+istringstream
+
+```cpp
+#include <iostream>
+#include <iomanip>
+#include <sstream>
+ 
+int main()
+{
+    std::string input = "41 3.14 false hello world";
+    std::istringstream stream(input);
+    int n;
+    double f;
+    bool b;
+ 
+    stream >> n >> f >> std::boolalpha >> b; // 通过std::boolalpha可以读写bool量
+    std::cout << "n = " << n << '\n'
+              << "f = " << f << '\n'
+              << "b = " << std::boolalpha << b << '\n';
+ 
+    // extract the rest using the streambuf overload
+    stream >> std::cout.rdbuf();
+    std::cout << '\n';
+}
+```
+
+
+
+### 输入/输出流
+
+- iostream: 继承自istream和ostream, 是下面两个输入/输出流类的基类
+- fstream
+- stringstream
+
 
 
 ## 泛型程序设计及STL
