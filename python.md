@@ -1,6 +1,7 @@
 ## commands
 
-raw_input()
+python2: raw_input()
+python3: input()
 
 接收用户输入的内容, 存储为字符串
 
