@@ -10,6 +10,17 @@ y = float(raw_input('Enter a number: '))
 x = raw_input('Enter your name: ')
 ```
 
+assert: same as C++
+`assert type(x) == int and x>=0`
+
+add comments of a function:
+```python
+def func1(x, y)；
+“““this function is used to...;
+    input: x should be an integer; y should be a float”””
+   return x + y
+```
+
 ## Modules
 
 One can group some parameters and functions into a single .py file, for example test.py. Then this file can be imported to the environment wherever you want to use the parameters or functions.
