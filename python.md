@@ -1,5 +1,7 @@
 ## commands
 
+### input
+
 python2: raw_input()
 python3: input()
 
@@ -9,6 +11,8 @@ python3: input()
 y = float(raw_input('Enter a number: '))
 x = raw_input('Enter your name: ')
 ```
+
+### assert
 
 assert: same as C++
 `assert type(x) == int and x>=0`
@@ -20,6 +24,29 @@ def func1(x, y)；
     input: x should be an integer; y should be a float”””
    return x + y
 ```
+
+### global
+
+全局变量, 通过global声明, 在每个使用了该变量的函数内部都需要用global声明一下
+
+```python
+def fibMetered(x):
+    global numCalls
+    numCalls += 1
+    if x == 0 or x == 1:
+        return 1
+    else:
+        return fibMetered(x-1) + fibMetered(x-2)
+
+
+def testFib(n):
+    for i in range(n+1):
+        global numCalls
+        numCalls = 0
+        print('fib of ' + str(i) + ' = ' + str(fibMetered(i)))
+        print('fib called ' + str(numCalls) + ' times')
+```
+
 
 ## Modules
 
