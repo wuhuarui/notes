@@ -78,6 +78,78 @@ difference between lists and tuples:
 
 + list with one single element: `list = [3]`, donot like what we did with tuple `tuple = (3,)`
 
+Opreation "+" can help combine two lists. `newlist = list1 + list2`
+
+```python
+# make a clone of a list
+Clone = list[:] # Clone is the copy of list, once it's created, it has no relationship with "list"
+SameList = list # SameList is equal to list
+```
+
+**One can use function object as the element of list or the formal parameter of a function**
+
+```python
+def applyFuns(L, x):
+    for f in L:
+        print(f(x))
+
+applyFuns([abs, int, fact, fib], 4)
+```
+
+### map
+
+`Map` applies a function to all the items in an input_list: `map(function_to_apply, list_of_inputs)`
+
+```python
+items = [1, 2, 3, 4, 5]
+squared = []
+for i in items:
+    squared.append(i**2)
+# same code with "map"
+items = [1, 2, 3, 4, 5]
+squared = list(map(lambda x: x**2, items)) # "lamda x: x**2" is a function object
+
+#  Instead of a list of inputs we can even have a list of functions!
+def multiply(x):
+    return (x*x)
+def add(x):
+    return (x+x)
+
+funcs = [multiply, add]
+for i in range(5):
+    value = list(map(lambda x: x(i), funcs))
+    print(value)
+
+# Output:
+# [0, 0]
+# [1, 2]
+# [4, 4]
+# [9, 6]
+# [16, 8]
+
+# General form: an n-ary function and n collections of arguments
+L1 = [1, 28, 36]
+L2 = [2, 57, 9]
+map(min, L1, L2)
+```
+
+### dictionaries
+
+syntax: `dic = {'key1': value1, 'key2': value2, ...}`
+
+```python
+monthNumber = {1: 'Jan', 2: 'Feb', 'Feb': 2, 'Jan': 1}
+# insertion
+monthNumer['Mar'] = 3
+# iteration
+listofkey = []
+for key in monthNumnber: # return the key inside the dictionary
+    listofkey.append(key)
+# listofkey is the same as
+monthNumber.keys()
+```
+
+Keys in a dictionary can not be changed, but the value can be changed. In this way, a tuple can be applied as a key, but a list cannot.
 
 
 ## Modules
