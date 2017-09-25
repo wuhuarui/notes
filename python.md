@@ -47,6 +47,15 @@ def testFib(n):
         print('fib called ' + str(numCalls) + ' times')
 ```
 
+### tuples
+
+In python, tuples can be defined with `(element1, element2...)`.
+
+```python
+t1 = (1, 'two', 3)
+t2 = (t1, 'four')
+t3 = ('five',) # the "," is used to show that 't3' is a tuple with one single element. If not defined with ",", t3 will be treated as a string
+```
 
 ## Modules
 
