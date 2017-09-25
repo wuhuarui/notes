@@ -52,10 +52,33 @@ def testFib(n):
 In python, tuples can be defined with `(element1, element2...)`.
 
 ```python
+# create a new tuple
 t1 = (1, 'two', 3)
 t2 = (t1, 'four')
 t3 = ('five',) # the "," is used to show that 't3' is a tuple with one single element. If not defined with ",", t3 will be treated as a string
+t4 =() # the empty tuple
+
+# To add an element or a new tuple to a existing tuple, "+" can be used.
+t3 = t1 + t2
+t4 = t3 + (1,)
+
+# iterating in a tuple
+sum = 0
+for i in t1；
+    sum += i
 ```
+
+### lists
+
+difference between lists and tuples:
+
++ 'tuple' object does not support item assignment, which means the elements in tuple can not be changed.
+
++ `list = [1, 2, 4]`, list object uses "[]" rather than "()";
+
++ list with one single element: `list = [3]`, donot like what we did with tuple `tuple = (3,)`
+
+
 
 ## Modules
 
