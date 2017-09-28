@@ -15,7 +15,12 @@ x = raw_input('Enter your name: ')
 ### assert
 
 assert: same as C++
-`assert type(x) == int and x>=0`
+`assert type(x) == int and x>=0, 'x should be an integer bigger than 0'`
+
+the first part `type(x) == int and x>=0` is the condition of this assertion.
+
+the second part `'x should be an integer bigger than 0'` is the output message if the condition is `False`.
+
 
 add comments of a function:
 ```python
@@ -151,6 +156,33 @@ monthNumber.keys()
 
 Keys in a dictionary can not be changed, but the value can be changed. In this way, a tuple can be applied as a key, but a list cannot.
 
+
+### exception syntax
+
+using `try`, `except`, `finally`, `raise`.
+
+```python
+def getRatios(v1, v2):
+    """Assumes: v1 and v2 are lists of equal length of numbers
+       Returns a list containing the meaningful values of v1[i]/v2[i]"""
+    ratios = []
+    for index in range(len(v1)):
+        try:
+            ratios.append(v1[index]/float(v2[index]))
+        except ZeroDivisionError:
+            ratios.append(float('NaN'))
+        except:
+            raise ValueError('getRatios called with bad arg...')
+    return ratios
+    
+
+try:
+    print(getRatios([1.,2.,7.,6.], [1.,2.,0.,3.]))
+    print(getRatios([],[]))
+    print(getRatios([1.,2.],[3.]))
+except ValueError as e:
+    print(e)
+ ```
 
 ## Modules
 
