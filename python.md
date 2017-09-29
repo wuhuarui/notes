@@ -1,5 +1,26 @@
 ## commands
 
+### print
+
+python2: `print a`
+
+python3: `print(a)`
+
+Print elements in one line: 
+
+```python
+dic = {'g': 5}
+print('a', dic)
+```
+
+### random
+
+`import random`
+
+`random.randint(a, b)` return random integer in the range of [a, b], endpoint is included;
+
+`random.randrange(a, b[, step=1])` return random value in the range of \[a, b) with the step, endpoint is not included. a, b, step are in the type of integer.
+
 ### input
 
 python2: raw_input()
@@ -153,6 +174,25 @@ for key in monthNumnber: # return the key inside the dictionary
 # listofkey is the same as
 monthNumber.keys()
 ```
+
+```python
+def getFrequencyDict(sequence):
+    """
+    Returns a dictionary where the keys are elements of the sequence
+    and the values are integer counts, for the number of times that
+    an element is repeated in the sequence.
+
+    sequence: string or list
+    return: dictionary
+    """
+    # freqs: dictionary (element_type -> int)
+    freq = {}
+    for x in sequence:
+        freq[x] = freq.get(x,0) + 1
+    return freq
+```
+
+`dic.get(k[, d])` if k is a key of dictionary, return dic[k], else return d. The default value of d is None.
 
 Keys in a dictionary can not be changed, but the value can be changed. In this way, a tuple can be applied as a key, but a list cannot.
 
