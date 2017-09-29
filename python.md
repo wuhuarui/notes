@@ -196,6 +196,10 @@ def getFrequencyDict(sequence):
 
 Keys in a dictionary can not be changed, but the value can be changed. In this way, a tuple can be applied as a key, but a list cannot.
 
+`dic.copy()` return the copy of a dictionary.
+
+`pop(key[, default])` If key is in the dictionary, remove it and return its value, else return default. If default is not given and key is not in the dictionary, a KeyError is raised.
+
 
 ### exception syntax
 
