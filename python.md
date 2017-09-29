@@ -11,7 +11,12 @@ Print elements in one line:
 ```python
 dic = {'g': 5}
 print('a', dic)
+# only works in python3.X
+print('a', end='')
+print(' same line')
 ```
+
+`print([object, ...], *, sep=' ', end='\n', file=sys.stdout)` python 3.x
 
 ### random
 
