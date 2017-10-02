@@ -7,6 +7,68 @@ a, b = 1, 2
 a, b = b, a #short form of swap
 ```
 
+### string.join
+
+```python
+a = [1,2,3,4,5,6]
+print(a)
+# [1, 2, 3, 4, 5, 6]
+print('{' + ', '.join([str(e) for e in a]) + '}')
+# {1, 2, 3, 4, 5, 6}
+```
+
+
+### class
+
+```python
+import math
+
+def sq(x):
+    return x*x
+
+# object is the base class, a built_in class of python
+class Coordinate(object):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def getX(self):
+        # Getter method for a Coordinate object's x coordinate.
+        # Getter methods are better practice than just accessing an attribute directly
+        return self.x
+
+    def getY(self):
+        # Getter method for a Coordinate object's y coordinate
+        return self.y
+
+    def __str__(self):
+        return "<"+str(self.x)+","+str(self.y)+">"
+
+    def __eq__(self, other):
+        # First make sure `other` is of the same type 
+        assert type(other) == type(self)
+        # Since `other` is the same type, test if coordinates are equal
+        return self.getX() == other.getX() and self.getY() == other.getY()
+
+    def distance(self,other):
+        return math.sqrt(sq(self.x - other.x)
+                         + sq(self.y - other.y))
+
+    def __repr__(self):
+        return 'Coordinate(' + str(self.x) + ', ' + str(self.y) + ')'
+
+c = Coordinate(3,4)
+Origin = Coordinate(0,0)
+```
+
+`__str__`: Called by str(object) and the built-in functions format() and print() to compute the “informal” or nicely printable string representation of an object. The return value must be a string object.
+
+`__eq__`: implementation of operator `=`
+
+`__repr__`: Called by the repr() built-in function to compute the “official” string representation of an object. It shows how to create an object.
+
+
+
 ### print
 
 python2: `print a`
