@@ -1,5 +1,34 @@
 ## commands
 
+### matplotlib toolkit
+
+```python
+from matplotlib import pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+```
+
+#### rcParam
+
+```python
+plt.rcParams['figure.figsize'] = [12 , 8]
+plt.rcParams['figure.dpi'] = 72.0*2
+```
+
+#### [pie chart](https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.pie.html)
+
+```python
+sizes = [1,3,4,5,6,7,8] # percent of different parts, don't need to be normalized
+explode = [0,0,0,0,0.1,0.1,0.1,0.1]
+fig1, ax1 = plt.subplots()
+ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.2f%%',
+        shadow=True, startangle=180)
+ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+plt.title("$R59\ of\ ^{40}K\ in\ region\ of\ %.2fkeV$" % (peak[idxPeak]['mu']*1000.))
+plt.show()
+```
+
+
+
 ### swap
 
 ```python
