@@ -1,5 +1,12 @@
 ## commands
 
+### swap
+
+```python
+a, b = 1, 2
+a, b = b, a #short form of swap
+```
+
 ### print
 
 python2: `print a`
