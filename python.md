@@ -7,14 +7,14 @@ from matplotlib import pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 ```
 
-#### rcParam
+#### [rcParam](https://matplotlib.org/users/customizing.html)
 
 ```python
 plt.rcParams['figure.figsize'] = [12 , 8]
 plt.rcParams['figure.dpi'] = 72.0*2
 ```
 
-#### [pie chart](https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.pie.html)
+#### [Pie chart](https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.pie.html)
 
 ```python
 sizes = [1,3,4,5,6,7,8] # percent of different parts, don't need to be normalized
