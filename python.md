@@ -201,6 +201,67 @@ The method `pass` means the subclass is just as same as superclass, no changes w
 
 If one subclass wants to inherit from two superclasses,(multiple inheritance) use `class C(A, B)`. In this case, if there are same methods in class A and class B, named `sameMethod`, then create an instance of C, named `c`. With `c.sameMethod()`, the method in class A will be called. 简单来说就是C继承A和B, C中的方法和变量的调用过程中会依次从左往右, 从subclass(也就是C自身)到superclass(如果A,B还有母类,继续往上追溯), 在这个遍历的过程中, 第一次出现的方法或变量就是实际调用到的. 因此如果A, B中都含有`sameMethod`, 由于A先遍历, 会调用A中的方法.
 
+### generator
+
+Any procedure or method with a `yield` statement is called a generator.
+
+```python
+def genTest():
+yield 1
+yield 2
+```
+
+Generators have a `next()` method which starts/resumes execution of the procedure. Inside of generator:
+
+- yield suspends execution and returns a value
+
+- Returning from a generator raises a StopIteration exception
+
+```python
+foo = genTest()
+foo.next() # return 1
+foo.next() # return 2
+foo.next() # Results in a StopIteration exception
+
+for n in genTest():
+        print(n)
+# 1
+# 2
+```
+
+```python
+# a fancier example:
+def genFib():
+        fibn_1 = 1 #fib(n-1)
+        fibn_2 = 0 #fib(n-2)
+        while True:
+                # fib(n) = fib(n-1) + fib(n-2)
+                next = fibn_1 + fibn_2
+                yield next
+                fibn_2 = fibn_1
+                fibn_1 = next
+```
+
+Generator allows one to generate each new objects as needed as part of another computation (rather than computing a very long sequence, only to throw most of it away while you do something on an element, then repeating the process). 例如有时产生一个sequence, 但是其len很大, 如果在使用的时候我们只关心其中的某个元素, 不放设置为generator, 否则返回一个很长的sequence, 占用内存较多且效率较低.
+
+```python
+def allStudents(self):
+        if not self.isSorted:
+                self.students.sort()
+                self.isSorted = True
+        return self.students[:]
+#return copy of list of students
+
+def allStudents(self):
+        if not self.isSorted:
+                self.students.sort()
+                self.isSorted = True
+        for s in self.students:
+                yield s
+```
+
+syntax changes: python 2 `gen.next()`; python 3 `next(gen)`
+
 
 ### print
 
