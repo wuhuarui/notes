@@ -96,6 +96,80 @@ Origin = Coordinate(0,0)
 
 `__repr__`: Called by the repr() built-in function to compute the “official” string representation of an object. It shows how to create an object.
 
+`__lt__`: implementation of operator `<`, with this method implemented, one can use the method of `sort()`. Here `obj2 < obj1` is equal to `obj2.__lt__(obj1)`
+
+#### inheritance subclass
+
+```python
+import datetime
+
+class Person(object):
+    def __init__(self, name):
+        """create a person called name"""
+        self.name = name
+        self.birthday = None
+        self.lastName = name.split(' ')[-1]
+
+    def getLastName(self):
+        """return self's last name"""
+        return self.lastName
+
+    def setBirthday(self,month,day,year):
+        """sets self's birthday to birthDate"""
+        self.birthday = datetime.date(year,month,day)
+
+    def getAge(self):
+        """returns self's current age in days"""
+        if self.birthday == None:
+            raise ValueError
+        return (datetime.date.today() - self.birthday).days
+
+    def __lt__(self, other):
+        """return True if self's ame is lexicographically
+           less than other's name, and False otherwise"""
+        if self.lastName == other.lastName:
+            return self.name < other.name
+        return self.lastName < other.lastName
+
+    def __str__(self):
+        """return self's name"""
+        return self.name
+
+# me = Person("William Eric Grimson")
+# her = Person("Cher")
+# her.getLastName()
+# plist = [me, her]
+# for p in plist: print p
+# plist.sort() # sort according to the method of `__lt__`
+# for p in plist: print p
+
+class MITPerson(Person): # inheritance subclass, inherited from the class of Person
+    nextIdNum = 0 # next ID number to assign, belong to the whole class rather than a single object
+
+    def __init__(self, name):
+        Person.__init__(self, name) # initialize Person attributes
+        # new MITPerson attribute: a unique ID number
+        self.idNum = MITPerson.nextIdNum
+        MITPerson.nextIdNum += 1
+
+    def getIdNum(self):
+        return self.idNum
+
+    # sorting MIT people uses their ID number, not name!
+    def __lt__(self, other):
+        return self.idNum < other.idNum
+
+p1 = MITPerson('Eric')
+p2 = MITPerson('John')
+p3 = MITPerson('John')
+p4 = Person('John')
+
+p4 < p1 # the comparision is valid, equal to p4.__lt__(p1), compare according to the method of Person class
+p1 < p4 # the comparision is not valid, equal to p1.__lt__(p4), p1 is an object of MITPerson, the comparision should use the MITPerson method, but p4 don't have idNum.
+```
+
+
+
 
 
 ### print
