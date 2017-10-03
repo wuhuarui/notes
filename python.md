@@ -39,7 +39,9 @@ a, b = 1, 2
 a, b = b, a #short form of swap
 ```
 
-### string.join
+### [string](https://docs.python.org/2/library/string.html)
+
+#### string.join
 
 ```python
 a = [1,2,3,4,5,6]
@@ -49,6 +51,25 @@ print('{' + ', '.join([str(e) for e in a]) + '}')
 # {1, 2, 3, 4, 5, 6}
 ```
 
+#### string.spilt(s\[, sep\[, maxsplit\]\])
+
+Return a list of the words of the string s. If the optional second argument `sep` is absent or `None`, the words are separated by arbitrary strings of whitespace characters (space, tab, newline, return, formfeed). If the second argument `sep` is present and not None, it specifies a string to be used as the word separator. The returned list will then have one more item than the number of non-overlapping occurrences of the separator in the string. If maxsplit is given, at most maxsplit number of splits occur, and the remainder of the string is returned as the final element of the list (thus, the list will have at most maxsplit+1 elements). If maxsplit is not specified or -1, then there is no limit on the number of splits (all possible splits are made).
+
+`'# dfdf  sdfas t *'.spilt()` returns `['#', 'dfdf', 'sdfas', 't', '*']`
+
+`'# dfdf  sdfas t *'.spilt(' ')` returns `['#', 'dfdf', '', 'sdfas', 't', '*']`
+
+`'# dfdf  sdfas t *'.spilt(None,3)` returns `['#', 'dfdf', 'sdfas', 't *']`
+
+#### string.strip(s \[,chars\])
+
+Return a copy of string s, whose leading and trailing characters removed. `chars` is a string, if `chars` is omitted or `None`, whitespace(including space, tab, etc.) will be removed. If given, remove the character in `chars`. 只有前后两端的字符会去除, 中间的字符不变. `" string test ".strip()` returns `"string test"`; `" #string* test* ".strip("#* ")` returns `"string* test"`.
+
+#### string.replace(s, old, new\[, maxreplace\])
+
+Return a copy of string s with all occurrences of substring old replaced by new. If the optional argument maxreplace is given, the first maxreplace occurrences are replaced.
+
+`'# dfdf  sdfas t *'.replace(' ','')` returns `#dfdfsdfast*`
 
 ### class
 
