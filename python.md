@@ -7,6 +7,19 @@ from matplotlib import pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 ```
 
+#### savefig
+
+```
+savefig(fname, dpi=None, facecolor='w', edgecolor='w',
+        orientation='portrait', papertype=None, format=None,
+        transparent=False, bbox_inches=None, pad_inches=0.1,
+        frameon=None)
+```
+
+Adjusting `dpi` to change the size of figure, adjusting `transparent` to remove the background pad.
+
+`fig.savefig(SUMMARY_PATH + 'Scatter_vs_Stop.png', transparent=True, dpi=300)`
+
 #### [rcParam](https://matplotlib.org/users/customizing.html)
 
 ```python
