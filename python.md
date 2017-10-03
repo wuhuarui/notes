@@ -178,7 +178,28 @@ p1 < p4 # the comparision is not valid, equal to p1.__lt__(p4), p1 is an object 
 ```python
 class Student(MITPerson):
         pass
+
+class UG(Student):
+        def __init__(self, name, classYear):
+                MITPerson.__init__(self, name)
+                self.year = classYear
+        
+        def getClass(self):
+                return selt.year
+
+class Grad(Student):
+        pass
+
+class TransferStudent(Student):
+        pass
+
+def isStudent(obj):
+        return isinstance(obj, Student)
 ```
+
+The method `pass` means the subclass is just as same as superclass, no changes was made.
+
+If one subclass wants to inherit from two superclasses,(multiple inheritance) use `class C(A, B)`. In this case, if there are same methods in class A and class B, named `sameMethod`, then create an instance of C, named `c`. With `c.sameMethod()`, the method in class A will be called. 简单来说就是C继承A和B, C中的方法和变量的调用过程中会依次从左往右, 从subclass(也就是C自身)到superclass(如果A,B还有母类,继续往上追溯), 在这个遍历的过程中, 第一次出现的方法或变量就是实际调用到的. 因此如果A, B中都含有`sameMethod`, 由于A先遍历, 会调用A中的方法.
 
 
 ### print
