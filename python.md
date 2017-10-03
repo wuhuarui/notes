@@ -27,6 +27,9 @@ plt.title("$R59\ of\ ^{40}K\ in\ region\ of\ %.2fkeV$" % (peak[idxPeak]['mu']*10
 plt.show()
 ```
 
+### [isinstance](https://docs.python.org/2/library/functions.html#isinstance)
+
+`isinstance(object, classinfo)` return `True` if `object` is an instance of `classinfo`.
 
 
 ### swap
@@ -168,8 +171,14 @@ p4 < p1 # the comparision is valid, equal to p4.__lt__(p1), compare according to
 p1 < p4 # the comparision is not valid, equal to p1.__lt__(p4), p1 is an object of MITPerson, the comparision should use the MITPerson method, but p4 don't have idNum.
 ```
 
+#### hierarchy(层级)
 
+接上
 
+```python
+class Student(MITPerson):
+        pass
+```
 
 
 ### print
