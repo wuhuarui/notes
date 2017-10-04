@@ -1,3 +1,13 @@
+## advanced note
+
+### tree
+
+`root node`, `branch`, `leaf`, `child`, `parent`...
+
+[`Binary tree`](http://www.xuetangx.com/asset-v1:MITx+6_00_1x+sp+type@asset+block/treeSearch.py)
+
+
+
 ## commands
 
 ### matplotlib toolkit
