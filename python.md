@@ -130,6 +130,12 @@ fig.tight_layout()
 plt.show()
 ```
 
+### random
+
+#### random.choice(seq)
+
+Return a random element from the non-empty sequence seq. If seq is empty, raises IndexError.
+
 ### [neumerate(iterable, start=0)](https://docs.python.org/3/library/functions.html#enumerate)
 
 Return an enumerate object. iterable must be a sequence, an iterator, or some other object which supports iteration. The `__next__()` method of the iterator returned by enumerate() returns a tuple containing a count (from start which defaults to 0) and the values obtained from iterating over iterable. Looks like a generator.
