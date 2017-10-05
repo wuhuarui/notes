@@ -4,7 +4,13 @@
 
 `root node`, `branch`, `leaf`, `child`, `parent`...
 
-[`Binary tree`](http://www.xuetangx.com/asset-v1:MITx+6_00_1x+sp+type@asset+block/treeSearch.py)
+[`Binary tree`](http://www.xuetangx.com/asset-v1:MITx+6_00_1x+sp+type@asset+block/treeSearch.py) 二叉树
+
+[`Decision Tree`](http://www.xuetangx.com/courses/course-v1:MITx+6_00_1x+sp/courseware/Week_10/videosequence:Lecture_19/) 决策树
+
+`Explicit search` 显式搜索; `Implicit search` 隐式搜索. 
+
+[Depth-search first](https://en.wikipedia.org/wiki/Depth-first_search); [Breadth-first search](https://en.wikipedia.org/wiki/Breadth-first_search)
 
 
 
