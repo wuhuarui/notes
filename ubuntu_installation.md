@@ -56,7 +56,7 @@ sudo apt-get install albert
 
 ### gpu drives
 
-[nvida drives](http://www.jianshu.com/p/c0f3a503df69)
+[nvidia drives](http://www.jianshu.com/p/c0f3a503df69)
 
 ### shadowsocks
 
@@ -74,15 +74,20 @@ sudo apt install shadowsocks-libev
 #Configure and start the service#
 
 ```
-# Edit the configuration file
-sudo vim /etc/shadowsocks-libev/config.json
+# Create and edit the configuration file config.json
+ss-local -c /path-to-config.json
+```
 
-# Edit the default configuration for debian
-sudo vim /etc/default/shadowsocks-libev
-
-# Start the service
-sudo /etc/init.d/shadowsocks-libev start    # for sysvinit, or
-sudo systemctl start shadowsocks-libev      # for systemd
+an example of config.json
+```
+{
+    "server":"0.0.0.0
+    "server_port":8888
+    "local_port":1080,
+    "password":"password",
+    "timeout":60,
+    "method":"chacha20-ietf-poly1305"
+}
 ```
 
 ### google chrome installation
