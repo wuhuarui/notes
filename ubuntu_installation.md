@@ -14,7 +14,7 @@ in short: `sudo vim /etc/default/rcS`, change `UTC=yes` to `UTC=no`
 sudo apt install zsh
 ```
 
-#change to zsh#
+#change to zsh, it may works after restart the system#
 
 ```
 chsh -s $(which zsh)
@@ -38,7 +38,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 ```
 
-change theme:
+change theme to candy:
 
 ```
 vim ~/.zshrc
