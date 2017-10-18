@@ -44,6 +44,19 @@ change theme to candy:
 vim ~/.zshrc
 ```
 
+### albert
+
+[installation of albert](https://albertlauncher.github.io/docs/installing/)
+
+```
+sudo add-apt-repository ppa:nilarimogard/webupd8
+sudo apt-get update
+sudo apt-get install albert
+```
+
+### gpu drives
+
+[nvida drives](http://www.jianshu.com/p/c0f3a503df69)
 
 ### shadowsocks
 
