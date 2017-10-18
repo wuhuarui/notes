@@ -6,6 +6,45 @@
 
 in short: `sudo vim /etc/default/rcS`, change `UTC=yes` to `UTC=no`
 
+### zsh and oh-my-zsh
+
+[Install zsh](https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH)
+
+```
+sudo apt install zsh
+```
+
+#change to zsh#
+
+```
+chsh -s $(which zsh)
+```
+
+[Install oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
+
+#install git#
+
+```
+sudo apt install git
+```
+
+#via curl#
+```
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
+
+#Or via wget#
+```
+sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+```
+
+change theme:
+
+```
+vim ~/.zshrc
+```
+
+
 ### shadowsocks
 
 [installation of shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev)
