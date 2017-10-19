@@ -60,7 +60,7 @@ sudo apt-get install albert
 
 ### shadowsocks
 
-[installation of shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev)
+#### [install shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev)
 
 For Ubuntu 14.04 and 16.04 users, please install from PPA:
 
@@ -71,17 +71,42 @@ sudo apt-get update
 sudo apt install shadowsocks-libev
 ```
 
-#Configure and start the service#
+#### arrange an oversea server
+
+vultr
+
+#### server configuration
 
 ```
 # Create and edit the configuration file config.json
-ss-local -c /path-to-config.json
+ss-server -c /path-to-config.json
+nohup ss-server -c /path-to-config.json >output.file 2>&1 &
 ```
 
 an example of config.json
 ```
 {
-    "server":"0.0.0.0
+    "server": ["[::0]", "0.0.0.0"] # [::0] represents ipv6; "0.0.0.0" represents ipv4
+    "server_port":8888
+    "local_port":1080,
+    "password":"password",
+    "timeout":60,
+    "method":"chacha20-ietf-poly1305"
+}
+```
+
+#### user configuration
+
+```
+# Create and edit the configuration file config.json
+ss-local -c /path-to-config.json
+nohup ss-local -c /path-to-config.json >output.file 2>&1 &
+```
+
+an example of config.json
+```
+{
+    "server":"ipv4address or ipv6address"
     "server_port":8888
     "local_port":1080,
     "password":"password",
