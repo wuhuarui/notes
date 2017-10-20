@@ -2,9 +2,13 @@
 
 ### Time zone
 
-[solution](http://blog.csdn.net/gatieme/article/details/51883981)
+[solution](https://blog.otorb.com/2017/01/15/solve-the-linux-and-windows-time-synchronization-problem/)
 
-in short: `sudo vim /etc/default/rcS`, change `UTC=yes` to `UTC=no`
+```
+sudo apt-get install ntpdate
+sudo ntpdate time.windows.com
+sudo hwclock --localtime --systohc
+```
 
 ### zsh and oh-my-zsh
 
@@ -54,9 +58,34 @@ sudo apt-get update
 sudo apt-get install albert
 ```
 
+设置开机启动:
+
+open albert->search startup applications->添加->名称: Albert; 命令: albert
+
 ### gpu drives
 
 [nvidia drives](http://www.jianshu.com/p/c0f3a503df69)
+
+### ipv6 in tsinghua
+
+create configuration file `config.sh`
+
+```
+#!/bin/bash
+REMOTE_IP6="2402:f000:1:1501:200:5efe"
+REMOTE_IP4="166.111.21.1"
+
+IFACE4=`ip route show|grep default|sed -e 's/^default.*dev \([^ ]\+\).*$/\1/'`
+IP4=`ip addr show dev $IFACE4 | grep -m 1 'inet\ ' | sed -e 's/^.*inet \([^ \\]\+\)\/.*$/\1/'`
+
+sudo ip tunnel del sit1  # 删除已经创建的设备，若没有则忽略
+sudo ip tunnel add sit1 mode sit remote $REMOTE_IP4 local $IP4
+sudo ip link set dev sit1 up
+sudo ip -6 addr add $REMOTE_IP6:$IP4/64 dev sit1
+sudo ip -6 route add default via $REMOTE_IP6:$REMOTE_IP4 dev sit1
+```
+
+Then, `source config.sh` 
 
 ### shadowsocks
 
@@ -196,8 +225,62 @@ pip3 list
 pip3 show numpy
 ```
 
+### typora
+
+[installation](http://support.typora.io/Typora-on-Linux/)
+
+```
+# optional, but recommended
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE
+
+# add Typora's repository
+sudo add-apt-repository 'deb https://typora.io ./linux/'
+sudo apt-get update
+
+# install typora
+sudo apt-get install typora
+```
+
+### GNU octave
+
+Free Software alternative to Matlab
+
+```
+sudo add-apt-repository ppa:octave/stable
+sudo apt-get update
+sudo apt-get install octave
+```
+
+### media player
+
+mpv media player
+
+```
+sudo add-apt-repository ppa:mc3man/mpv-tests
+sudo apt-get update
+sudo apt-get install mpv
+```
+
+### QOwnNotes
+
+```
+sudo add-apt-repository ppa:pbek/qownnotes
+sudo apt-get update
+sudo apt-get install qownnotes
+```
+
+### search ppa
+
+[website](https://launchpad.net/ubuntu)
+
+### cmake
+
+
+
 ### other 
 
 ```
 sudo apt-get install htop
 ```
+
+check disk status: use `sudo fdisk -l`
