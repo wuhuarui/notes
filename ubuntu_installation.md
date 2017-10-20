@@ -18,7 +18,7 @@ sudo hwclock --localtime --systohc
 sudo apt install zsh
 ```
 
-#change to zsh, it may works after restart the system#
+**change to zsh, it may works after restart the system**
 
 ```shell
 chsh -s $(which zsh)
@@ -179,7 +179,7 @@ sudo apt install fcitx fcitx-googlepinyin fcitx-table-wbpy fcitx-pinyin fcitx-su
 
 ### python and jupyter notebook
 
-#install python3#
+**install python3**
 
 To see which version of Python 3 you have installed, open a command prompt and run
 
@@ -202,26 +202,26 @@ sudo apt-get update
 sudo apt-get install python3.6
 ```
 
-#install pip3#
+**install pip3**
 
 ```shell
 sudo apt-get install python3-pip
 ```
 
-#install jupyter, use pip if you want to use python2#
+**install jupyter, use pip if you want to use python2**
 
 ```shell
 sudo pip3 install --upgrade pip
 sudo pip3 install jupyter
 ```
 
-#install numpy, matplotlib...#
+**install numpy, matplotlib...**
 
 ```shell
 sudo pip3 install numpy
 ```
 
-#check pip3 list#
+**check pip3 list**
 
 ```shell
 pip3 list
