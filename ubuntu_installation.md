@@ -228,6 +228,18 @@ pip3 list
 pip3 show numpy
 ```
 
+**adjust themes or fontsize**
+
+[jupyterthemes](https://github.com/dunovank/jupyter-themes)
+
+```
+# install jupyterthemes
+pip install jupyterthemes
+
+# upgrade to latest version
+pip install --upgrade jupyterthemes
+```
+
 ### typora
 
 [installation](http://support.typora.io/Typora-on-Linux/)
