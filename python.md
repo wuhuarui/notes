@@ -16,6 +16,25 @@
 
 ## commands
 
+### lambda
+
+[python docs](https://docs.python.org/3/tutorial/controlflow.html)
+
+Small anonymous functions can be created with the lambda keyword. This function returns the sum of its two arguments: lambda a, b: a+b.
+
+返回一个函数类型的对象. 支持简单的匿名函数
+
+```python
+>>> def make_incrementor(n):
+...     return lambda x: x + n
+...
+>>> f = make_incrementor(42)
+>>> f(0)
+42
+>>> f(1)
+43
+```
+
 ### matplotlib toolkit
 
 ```python
@@ -539,6 +558,32 @@ def applyFuns(L, x):
         print(f(x))
 
 applyFuns([abs, int, fact, fib], 4)
+```
+
+#### list.sort
+
+syntaxof sort() method: `list.sort(key=..., reverse=...)` or `sorted(list, key=..., reverse=...)`
+
+Simplest difference between sort() and sorted() is: sort() doesn't return any value while, sorted() returns an iterable list.
+
+`key` is a function object: function that serves as a key for the sort comparison.
+
+```python
+# take second element for sort
+def takeSecond(elem):
+    return elem[1]
+
+# random list
+random = [(2, 2), (3, 4), (4, 1), (1, 3)]
+
+# sort list with key
+random.sort(key=takeSecond)
+```
+
+Actually, an easier way to implement the method is:
+
+```python
+random.sort(key=lambda x:x[1])
 ```
 
 ### map
