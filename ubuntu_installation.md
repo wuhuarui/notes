@@ -22,6 +22,19 @@ change boot order: check the current boot order while booting. Normally entry 0 
 sudo mv mypicture.jpg /boot/grub
 sudo update-grub
 ```
+### ubuntu美化
+
+`sudo apt-get install unity-tweak-tool`
+
+可以修改主题, 图标, 修改工作区数量,热区等.
+
+system load indicator, 用来监视系统的各项性能信息.
+
+```shell
+sudo add-apt-repository ppa:indicator-multiload/stable-daily
+sudo apt-get update
+sudo apt-get install indicator-multiload
+```
 
 ### zsh and oh-my-zsh
 
