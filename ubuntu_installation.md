@@ -36,6 +36,14 @@ sudo apt-get update
 sudo apt-get install indicator-multiload
 ```
 
+Variety is a wallpaper changer.
+
+```shell
+sudo add-apt-repository ppa:peterlevi/ppa
+sudo apt-get update
+sudo apt-get install variety
+```
+
 ### zsh and oh-my-zsh
 
 [Install zsh](https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH)
