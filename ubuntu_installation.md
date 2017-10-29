@@ -10,6 +10,19 @@ sudo ntpdate time.windows.com
 sudo hwclock --localtime --systohc
 ```
 
+### boot optional
+
+change boot order: check the current boot order while booting. Normally entry 0 is ubuntu, entry 1 is ubuntu recovery mode, entry 2 is windows... Then edit `etc/default/grub` by executing `sudo gedit /etc/default/grub`. Then change the `GRUB_DEFAULT=0` to any entry you wish. Finally, executing `sudo update-grub` to update your grub.
+
+#### grub启动背景
+
+默认使用系统自带的壁纸, 目录是/usr/share/backgrounds, 把图片文件移动到/boot/grub目录下, 更新grub的时候会自动识别.
+
+```shell
+sudo mv mypicture.jpg /boot/grub
+sudo update-grub
+```
+
 ### zsh and oh-my-zsh
 
 [Install zsh](https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH)
