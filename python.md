@@ -35,6 +35,15 @@ Small anonymous functions can be created with the lambda keyword. This function 
 43
 ```
 
+### time
+
+```python
+import time
+ts = time.time()
+# some code here
+print('time cost: {:.0f} secs'.format(time.time()-ts))
+```
+
 ### matplotlib toolkit
 
 ```python
