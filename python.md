@@ -564,7 +564,7 @@ applyFuns([abs, int, fact, fib], 4)
 
 syntaxof sort() method: `list.sort(key=..., reverse=...)` or `sorted(list, key=..., reverse=...)`
 
-Simplest difference between sort() and sorted() is: sort() doesn't return any value while, sorted() returns an iterable list.
+Simplest difference between sort() and sorted() is: sort() doesn't return any value while, sorted() returns an iterable list. Another difference is that the list.sort() method is only defined for lists. **In contrast, the sorted() function accepts any iterable.**
 
 `key` is a function object: function that serves as a key for the sort comparison.
 
