@@ -88,6 +88,25 @@ plt.show()
 
 The fractional area of each wedge is given by x/sum(x). If sum(x) <= 1, then the values of x give the fractional area directly and the array will not be normalized.
 
+If you want to show the actual value(rather than percentage), using `autopct` with some simple function.
+
+autopct : None (default), string, or function, optional
+
+If not None, is a string or function used to label the wedges with their numeric value. The label will be placed inside the wedge. If it is a format string, the label will be fmt%pct. If it is a function, it will be called.
+
+The following example shows how to display actual value with `autopct`. 
+
+```python
+sizes = [1,2,3,4]
+total = 10
+fig1, ax1 = plt.subplots()
+ax1.pie(sizes, labels=['a','b','c','d'], autopct=lambda x:'{:.0f}'.format(x*total/100), # x seems to be the percentage value
+        shadow=True, startangle=180)
+ax1.axis('equal') 
+plt.show()
+```
+
+
 #### legend
 
 ```python
