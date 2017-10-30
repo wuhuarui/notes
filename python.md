@@ -41,6 +41,28 @@ Small anonymous functions can be created with the lambda keyword. This function 
 from matplotlib import pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 ```
+#### subplots
+
+`fig, ax = plt.subplots()` returns a [`matplotlib.figure.Figure` instance](https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure) and a [matplotlib.axes.Axes instance](https://matplotlib.org/api/axes_api.html#matplotlib.axes.Axes). The get and set methods of the two instances are in the form of `fig.set_***` and `ax.get_***`.
+
+Common commands:
+
+```python
+ax.legend([lsit of legend])
+ax.set_xticks([list of xtick position])
+ax.set_xticklabels([list of xtick label])
+ax.set_title('title')
+ax.set_xscale('log')
+ax.set_xlabel('xlabel', **kwargs) # **kwargs : Text properties, for example: fontsize='large
+
+fig.set_figheight(8.)
+fig.set_figwidth(12.)
+fig.set_dpi(144)
+fig.savefig("/media/pxy10/Documents/G4Simulation/Argus/analysis/figures/CuShield.png",
+            dpi = 288, transparent=True)
+```
+
+[text properties](https://matplotlib.org/api/text_api.html#matplotlib.text.Text)
 
 #### savefig
 
@@ -585,6 +607,18 @@ Actually, an easier way to implement the method is:
 ```python
 random.sort(key=lambda x:x[1])
 ```
+
+#### zip and sort one list by another
+
+```python
+X = ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
+Y = [ 0,   1,   1,    0,   1,   2,   2,   0,   1]
+Z = [x for x,_ in sorted(zip(X,Y), key=lambda x:x[1])]
+```
+
+[zip](https://docs.python.org/3/library/functions.html#zip), `zip` makes an iterator that aggregates elements from each of the iterables.
+
+`for x,_ in sorted(zip(X,Y), key=lambda x:x[1])`, here `_` represents the second element. Since the element won't be used, using `_` rather than a variable.
 
 ### map
 
