@@ -50,26 +50,6 @@ print('time cost: {:.0f} secs'.format(time.time()-ts))
 from matplotlib import pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 ```
-#### subplots
-
-`fig, ax = plt.subplots()` returns a [`matplotlib.figure.Figure` instance](https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure) and a [matplotlib.axes.Axes instance](https://matplotlib.org/api/axes_api.html#matplotlib.axes.Axes). The get and set methods of the two instances are in the form of `fig.set_***` and `ax.get_***`.
-
-Common commands:
-
-```python
-ax.legend([lsit of legend])
-ax.set_xticks([list of xtick position])
-ax.set_xticklabels([list of xtick label])
-ax.set_title('title')
-ax.set_xscale('log')
-ax.set_xlabel('xlabel', **kwargs) # **kwargs : Text properties, for example: fontsize='large
-
-fig.set_figheight(8.)
-fig.set_figwidth(12.)
-fig.set_dpi(144)
-fig.savefig("/media/pxy10/Documents/G4Simulation/Argus/analysis/figures/CuShield.png",
-            dpi = 288, transparent=True)
-```
 
 [text properties](https://matplotlib.org/api/text_api.html#matplotlib.text.Text)
 
@@ -134,7 +114,7 @@ The arguments of `legend` should be a list of string rather than string, otherwi
 
 #### subplots
 
-`fig, ax = plt.subplots()`
+`fig, ax = plt.subplots()` returns a [`matplotlib.figure.Figure` instance](https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure) and a [matplotlib.axes.Axes instance](https://matplotlib.org/api/axes_api.html#matplotlib.axes.Axes). The get and set methods of the two instances are in the form of `fig.set_***` and `ax.get_***`.
 
 fig : matplotlib.figure.Figure object
 
@@ -147,6 +127,23 @@ ax = fig.add_subplot(111)
 
 # equivalent but more general
 fig.add_subplot(1,1,1)
+```
+
+Common commands:
+
+```python
+ax.legend([lsit of legend])
+ax.set_xticks([list of xtick position])
+ax.set_xticklabels([list of xtick label])
+ax.set_title('title')
+ax.set_xscale('log')
+ax.set_xlabel('xlabel', **kwargs) # **kwargs : Text properties, for example: fontsize='large
+
+fig.set_figheight(8.)
+fig.set_figwidth(12.)
+fig.set_dpi(144)
+fig.savefig("/media/pxy10/Documents/G4Simulation/Argus/analysis/figures/CuShield.png",
+            dpi = 288, transparent=True)
 ```
 
 #### [annotation](https://matplotlib.org/users/annotations.html)
