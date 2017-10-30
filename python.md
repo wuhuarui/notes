@@ -86,6 +86,8 @@ plt.title("$R59\ of\ ^{40}K\ in\ region\ of\ %.2fkeV$" % (peak[idxPeak]['mu']*10
 plt.show()
 ```
 
+The fractional area of each wedge is given by x/sum(x). If sum(x) <= 1, then the values of x give the fractional area directly and the array will not be normalized.
+
 #### legend
 
 ```python
