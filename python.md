@@ -16,6 +16,10 @@
 
 ## commands
 
+### Text rendering With LaTeX
+
+using `r"$latex text$"`
+
 ### lambda
 
 [python docs](https://docs.python.org/3/tutorial/controlflow.html)
