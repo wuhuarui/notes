@@ -194,6 +194,8 @@ fig.savefig("/media/pxy10/Documents/G4Simulation/Argus/analysis/figures/CuShield
             dpi = 288, transparent=True)
 ```
 
+**`plt.tight_layout()` will adjust spacing between subplots to minimize the overlaps.**
+
 #### [annotation](https://matplotlib.org/users/annotations.html)
 
 #### [two scales](https://matplotlib.org/examples/api/two_scales.html)
