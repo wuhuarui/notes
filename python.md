@@ -106,6 +106,29 @@ ax1.axis('equal')
 plt.show()
 ```
 
+#### [stacked bar chart](https://matplotlib.org/examples/pylab_examples/bar_stacked.html)
+
+```python
+idx_material = [6, 4, 2, 5, 7, 10]
+ind = range(len(idx_material))    # the x locations for the groups
+width = 0.4          # the width of the bars: can also be len(x) sequence
+ind1 = np.arange(-width/2., len(idx_material)-width/2.,1) # the middle postion of front part, minus width/2
+ind2 = np.arange(width/2., len(idx_material)+width/2.,1)  # the middle postion of back part, plus width/2
+
+fig, ax = plt.subplots()
+fig.clf
+p1 = ax.bar(ind1, nEStopped, width)
+p2 = ax.bar(ind1, nEScatter, width, bottom = nEStopped)
+p3 = ax.bar(ind2, nMStopped, width)
+p4 = ax.bar(ind2, nMScatter, width, bottom = nMStopped)
+
+ax.set_xlabel('material')
+ax.set_ylabel('counts')
+plt.xticks(ind, label)
+plt.legend((p1[0], p2[0], p3[0], p4[0]), 
+           ('e- stopped', 'e- scattered' , 'mu stopped','mu scattered'))
+plt.show()
+```
 
 #### legend
 
