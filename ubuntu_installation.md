@@ -166,8 +166,8 @@ an example of config.json
 
 ```
 {
-    "server": ["[::0]", "0.0.0.0"] # [::0] represents ipv6; "0.0.0.0" represents ipv4
-    "server_port":8888
+    "server": ["[::0]", "0.0.0.0"], # [::0] represents ipv6; "0.0.0.0" represents ipv4
+    "server_port":8888,
     "local_port":1080,
     "password":"password",
     "timeout":60,
@@ -186,8 +186,8 @@ nohup ss-local -c /path-to-config.json >output.file 2>&1 &
 an example of config.json
 ```
 {
-    "server":"ipv4address or ipv6address"
-    "server_port":8888
+    "server":"ipv4address or ipv6address",
+    "server_port":8888,
     "local_port":1080,
     "password":"password",
     "timeout":60,
