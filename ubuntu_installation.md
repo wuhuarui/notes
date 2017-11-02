@@ -1,5 +1,19 @@
 ## installation of ubuntu along with window10
 
+### partition
+
+install option: 其他选项
+
+挂载点: `/`, 20G+
+
+swap area: 15G+
+
+`/boot`, 200M+
+
+`/home`, the more, the better
+
+choose boot partition
+
 ### Time zone
 
 [solution](https://blog.otorb.com/2017/01/15/solve-the-linux-and-windows-time-synchronization-problem/)
