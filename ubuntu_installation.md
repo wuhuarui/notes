@@ -1,3 +1,33 @@
+## ipv6
+
+[setting](https://github.com/tuna/ipv6.tsinghua.edu.cn/blob/master/isatap.md)
+
+清华大学ISATAP隧道配置方法
+
+Windows 环境（Windows 7及以上系统适用）
+
+以管理员身份运行cmd命令，进入命令行模式，输入如下命令
+
+```
+netsh int ipv6 isatap set router isatap.tsinghua.edu.cn
+netsh int ipv6 isatap set state enable
+```
+
+以上两条命令分别为设定ISATAP路由器和启用ISATAP隧道。
+
+此后，通过 ipconfig 应该可以看到一个 2402:f000:1:1501: 为前缀的v6地址，hostid为200:5efe:x.x.x.x， 其中x.x.x.x 为您的真实的IPv4地址，即可访问IPv6资源。
+
+以下操作为非必须。如果按照上述提示操作以后仍无法正常访问IPv6站点，可以尝试：
+
++ 右键点击桌面“计算机”图标，选择“管理”，展开“服务和应用程序”，选择“服务”，确认“IP Helper”服务已开启；
+
++ 确认Teredo隧道已经关闭（管理员模式在命令行运行netsh int teredo set state disable）；
+
++ 确认原生IPv6已经关闭（Internet 协议版本 6 (TCP/IPv6)前的对勾取消，位置在控制面板→网络和Internet→网络和共享中心→更改适配器设置→双击本地连接→属性）；
+
++ 尝试重启系统。
+
+
 ## installation of ubuntu along with window10
 
 ### partition
