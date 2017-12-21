@@ -377,3 +377,183 @@ sudo apt-get install htop
 ```
 
 check disk status: use `sudo fdisk -l`
+
+
+### ROOT
+
+1. Build Prerequisites
+
+   https://root.cern.ch/build-prerequisites
+
+   Required packages:
+
+```shell
+sudo apt-get install git dpkg-dev cmake g++ gcc binutils libx11-dev libxpm-dev libxft-dev libxext-dev
+```
+
+  	Optional packages:
+
+```shell
+sudo apt-get install gfortran libssl-dev libpcre3-dev xlibmesa-glu-dev libglew1.5-dev libftgl-dev libmysqlclient-dev libfftw3-dev libcfitsio-dev graphviz-dev libavahi-compat-libdnssd-dev libldap2-dev python-dev libxml2-dev libkrb5-dev libgsl0-dev libqt4-dev
+```
+
+
+
+
+2. Install ROOT(version 6.8.6)
+
+```shell
+mkdir root(ROOTDIR)
+cd root
+wget https://root.cern.ch/download/root_v6.08.06.source.tar.gz
+# wget https://root.cern.ch/download/root_<version>.source.tar.gz
+tar zxvf root_v6.08.06.source.tar.gz
+mv root_v6.08.06.source.tar.gz /tmp
+mv root-6.08.06 src
+mkdir root-6.08.06
+mv src root-6.08.06
+cd root-6.08.06
+mkdir build install
+echo cmake -DCMAKE_INSTALL_PREFIX=../install -Dgdml=ON -Dminuit2=ON -Droofit=ON -Dhttp=ON -Dldap=OFF ../src > cmakeCommand.txt
+cd build
+`cat ../cmakeCommand.txt` >& cmake.log
+less cmake.log
+# [check everything looks okay]
+make -j$N
+make install
+```
+
+If ROOT is used for python3, add `-Dpython3=ON` during cmake.
+
+```
+cmake -DCMAKE_INSTALL_PREFIX=../install -Dpython3=ON -Dgdml=ON -Dminuit2=ON -Droofit=ON -Dhttp=ON -Dldap=OFF ../src
+```
+
+3. set environment variables
+
+   Before using ROOT, one should set environment variables of ROOT with:
+
+```shell
+source path-to-root/install/bin/thisroot.sh
+```
+
+   	Or, one can set environment variables in ~/.zshrc
+
+   ```shell
+cd /home/pxy/Software/MJSW/root/root-6.08.06/install/bin
+source thisroot.sh
+cd ~
+   ```
+
+
+### CLHEP
+
+```shell
+mkdir CLHEP
+cd $SWDIR/CLHEP
+wget http://proj-clhep.web.cern.ch/proj-clhep/DISTRIBUTION/tarFiles/clhep-2.3.4.4.tgz
+tar zxvf clhep-2.3.4.4.tgz
+mv clhep-2.3.4.4.tgz /tmp
+cd 2.3.4.4
+mkdir build install
+echo cmake -DCMAKE_INSTALL_PREFIX=../install ../CLHEP > cmakeCommand.txt
+cd build
+`cat ../cmakeCommand.txt` >& cmake.log
+less cmake.log
+# [check everything looks okay]
+make -j$N
+make install
+```
+
+Then, set the environment variable of CLHEP
+
+```shell
+export CLHEP_BASE_DIR=/home/pxy/Software/CLHEP/2.3.4.4/CLHEP
+```
+
+### Geant4
+
+[yangzw's method](http://hep.tsinghua.edu.cn/~yangzw/CourseDataAna/2015/install_geant4_and_root_on_ubuntu.html)
+
+required package according to yangzw's method.
+
+```shell
+sudo apt-get install libxerces-c-dev libmotif-dev libglw1-mesa-dev inventor-dev opticalraytracer libpythia8-dev pythia8-doc-html pythia8-doc-worksheet pythia8-examples
+```
+
+Actually, during the installation with the following cmake command, only two packages are required:
+
+```shell
+sudo apt-get install libxerces-c-dev libxmu-dev
+```
+
+Some optional but suggested packages:
+
+```shell
+sudo apt-get install vim vim-doc vim-scripts emacs colordiff lftp dkms build-essential libzlcore-dev libxmu-dev
+```
+
+There are something wrong between MaGe and Geant4 multithread. So, don't use multi thread, i.e using:
+
+```-DGEANT4_BUILD_MULTITHREADED=OFF```
+
+
+If gdml is planed to be used for MaGe, the option of GDML should be set to be `-DGEANT4_USE_GDML=ON`, the default value is OFF. seeing from [Geant4 build options](https://geant4.web.cern.ch/geant4/UserDocumentation/UsersGuides/InstallationGuide/html/ch02s03.html)
+
+```shell
+cd $SWDIR/geant4
+wget http://geant4.web.cern.ch/geant4/support/source/geant4.10.03.p01.tar.gz
+tar zxvf geant4.10.03.p01.tar.gz
+mv geant4.10.03.p01.tar.gz /tmp
+cd geant4.10.03.p01
+mkdir build
+echo cmake -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCMAKE_INSTALL_PREFIX=../install -DCMAKE_BUILD_TYPE=RelWithDebInfo -DGEANT4_INSTALL_DATA=ON -DCLHEP_ROOT_DIR=/home/pxy/Software/CLHEP/2.3.4.4/install -DCMAKE_COMPILER_IS_GNUCXX=ON -DGEANT4_USE_OPENGL_X11=ON -DGEANT4_USE_RAYTRACER_X11=ON -DGEANT4_USE_GDML=ON -DGEANT4_USE_QT=ON -DGEANT4_BUILD_MULTITHREADED=ON ../src > cmakeCommand.txt
+cd build
+`cat ../cmakeCommand.txt` >& cmake.log
+less cmake.log
+# [check everything looks okay]
+make -j$N
+make install
+```
+
+PS: cmake options
+
+`DCMAKE_INSTALL_PREFIX=/home/pxy/Software/MJSW/geant4/geant4.10.03.p01` is the `install directory`
+
+`/home/pxy/Software/MJSW/geant4/geant4.10.03.p01` in the end of command is the `source directory `(including makefile)
+
+the current directory is the `build directory`
+
+With command of `-DGEANT4_INSTALL_DATA=ON`, Geant4 datasets missing from `GEANT4_INSTALL_DATADIR` will be downloaded and installed. If there are any downloaded datasets already, using `-DGEANT4_INSTALL_DATADIR=/path/to/G4data`.
+
+
+
+Set environment variables
+
+Before using ROOT, one should set environment variables of ROOT with:
+
+```shell
+source path-to-geant4/install/bin/geant4.sh
+```
+
+   Or, one can set environment variables in ~/.zshrc
+
+```shell
+cd ~/Software/MJSW/geant4/geant4.10.03.p01/bin
+source geant4.sh
+cd ~
+```
+
+[How to Run Example](http://geant4.web.cern.ch/geant4/UserDocumentation/Doxygen/examples_doc/html/README_HowToRun.html)
+
+```shell
+cd path_to_exampleXYZ     # go to directory which contains your example
+mkdir exampleXYZ_build
+cd exampleXYZ_build
+cmake -DGeant4_DIR=path_to_Geant4_installation/lib[64]/Geant4-10.2.0/ ../exampleXYZ
+make -j N exampleXYZ      # "N" is the number of processes 
+make install			  # optional(better not)
+./exampleXYZ			  # run the example
+```
+
+
