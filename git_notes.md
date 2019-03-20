@@ -7,4 +7,4 @@ git 使用笔记。
 - 提交
   - git  add  xx.x 
   - git commit -m "xxx" // xxx为描述
-- 
+  - git push origin master // 推送到远程
